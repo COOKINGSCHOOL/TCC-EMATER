@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feira Emater-RO</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .bg {
+            background-image: url(imagens/aboa.jpg);
+            background-position: center;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        :root {
+            --firstcolor: #28ee0d;
+        }
+
+        * {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            transition: all .2s linear;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            background-color: rgb(255, 255, 255);
+            font-weight: 750;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-weight: 750;
+        }
+
+        .navbar a {
+            display: block;
+            padding: 1rem;
+            text-align: center;
+            color: black;
+    
+        }
+
+        .navbar a:hover{
+            color: #1eff00;
+        }
+
+        .logo img {
+            width: 100px;
+            background-color: white;
+        }
+
+        .nome {
+            text-align: center;
+            width: 80%;
+            margin: center;
+            position: relative;
+            top: 105%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .conteudo {
+            padding: 20px;
+            border-radius: 20px;
+            width: 50%;
+            margin: auto;
+            background-color: rgb(0, 0, 0);
+            color: var(--firstcolor);
+            margin-bottom: 20px;
+            position: center;
+        }
+
+        .conteudo img {
+            border-radius: 20px;
+            width: 350px;
+            max-width: 350px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .conteudo h1,
+        .conteudo h2 {
+            margin: 10px;
+            text-align: center;
+        }
+
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .image-container img {
+            width: 200px;
+            height: 180px;
+            margin: 10px;
+            border-radius: 20px;
+        }
+
+        .seta-esquerda,
+        .seta-direita {
+            cursor: pointer;
+            font-size: 24px;
+            color: #fff;
+            z-index: 1000;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .seta-esquerda:hover,
+        .seta-direita:hover {
+            color: var(--firstcolor);
+        }
+
+        .seta-esquerda {
+            left: 10%;
+            display: none;
+        }
+
+        .seta-direita {
+            right: 10%;
+        }
+
+        .preco {
+            color: var(--firstcolor);
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .nome-fruta {
+            color: var(--firstcolor);
+            text-align: center;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .contato h3 {
+            color: rgb(255, 255, 255);
+        }
+
+        .whatsapp-link {
+            text-decoration: underline;
+            color: white;
+            font-weight: 700;
+        }
+
+        .whatsapp-link:hover {
+            color: green;
+        }
+    </style>
+</head>
+
+<body class="bg">
+    <header>
+        <div class="logo"><img src="imagens/logo.png" alt=""></div>
+        <nav class="navbar">
+            <a class="barra" href="#">Início</a>
+            <a class="barra" href="#">Calendário Emater</a>
+            <a class="barra" href="#">Quem Somos</a>
+            <a class="barra" href="#">Localização e Contatos</a>
+        </nav>
+    </header>
+
+    <div class="nome">
+        <div class="conteudo" id="banca1">
+            <h1>BANCA: FEIRANTE 1</h1>
+            <img src="imagens/feirante1l.jpg" alt="">
+            <h2>PRODUTOS</h2>
+            <div class="image-container">
+                <div id="nome-maracuja1" class="nome-fruta">Polpa de Maracuja</div>
+                <img id="maracuja1" class="frutas" src="imagens/polpademaracuja.jpg" alt="Maracujá">
+                <div id="preco-maracuja1" class="preco">R$ 5,00</div>
+
+                <div id="nome-cupuacu1" class="nome-fruta" style="display: none;"> Polpa de Cupuaçu</div>
+                <img id="cupuacu1" class="frutas" src="imagens/polpacupuaçu.jpg" alt="Cupuaçu">
+                <div id="preco-cupuacu1" class="preco" style="display: none;">R$ 7,00</div>
+
+                <div id="nome-acerola1" class="nome-fruta" style="display: none;">Polpa de Acerola</div>
+                <img id="acerola1" class="frutas" src="imagens/acerola.jpg" alt="Acerola">
+                <div id="preco-acerola1" class="preco" style="display: none;">R$ 3,00</div>
+
+                <div class="seta-esquerda" onclick="changeImage('banca1', -1)">&#10094;</div>
+                <div class="seta-direita" onclick="changeImage('banca1', 1)">&#10095;</div>
+            </div><br>
+
+            <div class="contato">
+                <h3>Contato: (69) 9 9274-5806</h3><br>
+                <a href="https://wa.me/556992745806" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
+                    WhatsApp
+                </a>
+            </div>
+
+        </div>
+
+        <div class="conteudo" id="banca2">
+            <h1>BANCA: FEIRANTE 2</h1>
+            <img src="imagens/feirante2.jpg" alt="">
+            <h2>PRODUTOS</h2>
+            <div class="image-container">
+                <div id="nome-maracuja1" class="nome-fruta">MARACUJÁ</div>
+                <img id="maracuja1" class="frutas" src="imagens/polpademaracuja.jpg" alt="Maracujá">
+                <div id="preco-maracuja1" class="preco">R$ 5,00</div>
+
+                <div id="nome-cupuacu1" class="nome-fruta" style="display: none;">CUPUAÇU</div>
+                <img id="cupuacu1" class="frutas" src="imagens/polpacupuaçu.jpg" alt="Cupuaçu">
+                <div id="preco-cupuacu1" class="preco" style="display: none;">R$ 7,00</div>
+
+                <div id="nome-acerola1" class="nome-fruta" style="display: none;">ACEROLA</div>
+                <img id="acerola1" class="frutas" src="imagens/acerola.jpg" alt="Acerola">
+                <div id="preco-acerola1" class="preco" style="display: none;">R$ 3,00</div>
+
+                <div class="seta-esquerda" onclick="changeImage('banca1', -1)">&#10094;</div>
+                <div class="seta-direita" onclick="changeImage('banca1', 1)">&#10095;</div>
+            </div><br>
+
+            <div class="contato">
+                <h3>Contato: (69) 9 9274-5806</h3><br>
+                <a href="https://wa.me/556992745806" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
+                    WhatsApp
+                </a>
+            </div>
+
+        </div>
+
+
+
+
+
+        <script>
+
+
+            document.addEventListener('DOMContentLoaded', () => {
+                function updateArrowVisibility(conteudo, currentIndex, imagens) {
+                    const setaEsquerda = conteudo.querySelector('.seta-esquerda');
+                    const setaDireita = conteudo.querySelector('.seta-direita');
+
+                    setaEsquerda.style.display = currentIndex === 0 ? 'none' : 'block';
+                    setaDireita.style.display = currentIndex === imagens.length - 1 ? 'none' : 'block';
+                }
+
+                function updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos) {
+                    imagens.forEach((img, index) => {
+                        img.style.display = index === currentIndex ? 'block' : 'none';
+                        nomesFrutas[index].style.display = index === currentIndex ? 'block' : 'none';
+                        precos[index].style.display = index === currentIndex ? 'block' : 'none';
+                    });
+                    updateArrowVisibility(conteudo, currentIndex, imagens);
+                }
+
+                function changeImage(bancaId, step) {
+                    const conteudo = document.getElementById(bancaId);
+                    const imagens = conteudo.querySelectorAll('.frutas');
+                    const nomesFrutas = conteudo.querySelectorAll('.nome-fruta');
+                    const precos = conteudo.querySelectorAll('.preco');
+                    let currentIndex = 0;
+
+                    imagens.forEach((img, index) => {
+                        if (img.style.display === 'block') {
+                            currentIndex = index + step;
+                            if (currentIndex < 0) currentIndex = 0;
+                            if (currentIndex >= imagens.length) currentIndex = imagens.length - 1;
+                        }
+                    });
+
+                    updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos);
+                }
+
+                const bancas = document.querySelectorAll('.conteudo');
+
+                bancas.forEach(conteudo => {
+                    const imagens = conteudo.querySelectorAll('.frutas');
+                    const nomesFrutas = conteudo.querySelectorAll('.nome-fruta');
+                    const precos = conteudo.querySelectorAll('.preco');
+                    let currentIndex = 0;
+
+                    imagens.forEach((img, index) => {
+                        img.style.display = index === currentIndex ? 'block' : 'none';
+                        precos[index].style.display = index === currentIndex ? 'block' : 'none';
+                    });
+
+                    conteudo.querySelector('.seta-esquerda').addEventListener('click', () => {
+                        if (currentIndex > 0) {
+                            currentIndex--;
+                            updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos);
+                        }
+                    });
+
+                    conteudo.querySelector('.seta-direita').addEventListener('click', () => {
+                        if (currentIndex < imagens.length - 1) {
+                            currentIndex++;
+                            updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos);
+                        }
+                    });
+                });
+            });
+        </script>
+
+</body>
+
+</html>
