@@ -13,7 +13,7 @@
         }
 
         .bg {
-            background-image: url(imagens/aboa.jpg);
+            background-color: rgb(105, 255, 86);
             background-position: center;
             background-size: 100% 100%;
             background-repeat: no-repeat;
@@ -39,13 +39,14 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1rem;
+            padding: 0.1rem;
+            height: 7%;
             display: flex;
             align-items: center;
             justify-content: space-between;
             z-index: 1000;
             background-color: rgb(255, 255, 255);
-            font-weight: 750;
+            font-weight: 750
         }
 
         .navbar {
@@ -61,10 +62,9 @@
             padding: 1rem;
             text-align: center;
             color: black;
-    
         }
 
-        .navbar a:hover{
+        .navbar a:hover {
             color: #1eff00;
         }
 
@@ -75,10 +75,10 @@
 
         .nome {
             text-align: center;
-            width: 80%;
+            width: 70%;
             margin: center;
             position: relative;
-            top: 105%;
+            top: 60.1%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -96,16 +96,18 @@
 
         .conteudo img {
             border-radius: 20px;
-            width: 350px;
+            width: 280px;
             max-width: 350px;
             display: block;
             margin: 0 auto;
         }
 
+
         .conteudo h1,
         .conteudo h2 {
-            margin: 10px;
+            margin: 5px;
             text-align: center;
+            font-size: 20px;
         }
 
         .image-container {
@@ -123,7 +125,9 @@
         }
 
         .seta-esquerda,
-        .seta-direita {
+        .seta-direita,
+        .seta-esquerda-bancas,
+        .seta-direita-bancas {
             cursor: pointer;
             font-size: 24px;
             color: #fff;
@@ -133,24 +137,26 @@
             transform: translateY(-50%);
         }
 
-        .seta-esquerda:hover,
-        .seta-direita:hover {
-            color: var(--firstcolor);
+        .seta-direita-bancas,
+        .seta-esquerda-bancas {
+            color: black;
+            font-size: 50px;
         }
 
-        .seta-esquerda {
+        .seta-esquerda,
+        .seta-esquerda-bancas {
             left: 10%;
             display: none;
         }
 
-        .seta-direita {
+        .seta-direita,
+        .seta-direita-bancas {
             right: 10%;
         }
 
         .preco {
             color: var(--firstcolor);
             text-align: center;
-            margin-top: 10px;
             font-weight: 600;
         }
 
@@ -172,7 +178,24 @@
         }
 
         .whatsapp-link:hover {
-            color: green;
+            color: var(--firstcolor);
+        }
+
+        .estrela {
+            margin-right: 6px;
+            cursor: pointer;
+            font-weight: 900;
+        }
+
+        .conteudo button {
+            border-radius: 3px;
+            font-weight: 600;
+            background-color: rgb(105, 255, 86);
+
+        }
+
+        .botãoapagar {
+            display: none;
         }
     </style>
 </head>
@@ -191,6 +214,24 @@
     <div class="nome">
         <div class="conteudo" id="banca1">
             <h1>BANCA: FEIRANTE 1</h1>
+            <div class="avaliacao" id="avaliacao-banca1">
+                <span class="estrela" onmouseover="preencherEstrelas('banca1', 1)"
+                    onmouseout="esvaziarEstrelas('banca1')" onclick="selecionarPontuacao('banca1', 1)">&#9734;</span>
+                <span class="estrela" onmouseover="preencherEstrelas('banca1', 2)"
+                    onmouseout="esvaziarEstrelas('banca1')" onclick="selecionarPontuacao('banca1', 2)">&#9734;</span>
+                <span class="estrela" onmouseover="preencherEstrelas('banca1', 3)"
+                    onmouseout="esvaziarEstrelas('banca1')" onclick="selecionarPontuacao('banca1', 3)">&#9734;</span>
+                <span class="estrela" onmouseover="preencherEstrelas('banca1', 4)"
+                    onmouseout="esvaziarEstrelas('banca1')" onclick="selecionarPontuacao('banca1', 4)">&#9734;</span>
+                <span class="estrela" onmouseover="preencherEstrelas('banca1', 5)"
+                    onmouseout="esvaziarEstrelas('banca1')" onclick="selecionarPontuacao('banca1', 5)">&#9734;</span>
+                <button onclick="enviarAvaliacao('banca1')">Enviar</button>
+                <button onclick="verAvaliacoes('banca1')">Avaliações</button>
+                <div class="botãoapagar">
+                    <button onclick="limparVotos('banca1')">Limpar Votos</button>
+                </div>
+                <div id="contagem-votos-banca1" class="contagem-votos"></div>
+            </div>
             <img src="imagens/feirante1l.jpg" alt="">
             <h2>PRODUTOS</h2>
             <div class="image-container">
@@ -208,119 +249,285 @@
 
                 <div class="seta-esquerda" onclick="changeImage('banca1', -1)">&#10094;</div>
                 <div class="seta-direita" onclick="changeImage('banca1', 1)">&#10095;</div>
-            </div><br>
+
+            </div>
+            <div id="info-container-banca1" class="info-container"></div>
 
             <div class="contato">
-                <h3>Contato: (69) 9 9274-5806</h3><br>
+                <h3>Contato: (69) 9 9274-5806</h3>
                 <a href="https://wa.me/556992745806" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
                     WhatsApp
                 </a>
             </div>
-
         </div>
 
         <div class="conteudo" id="banca2">
             <h1>BANCA: FEIRANTE 2</h1>
+            <div class="avaliacao" id="avaliacao-banca2">
+                <span class="estrela" onmouseover="preencherEstrelas('banca2', 1)"
+                    onmouseout="esvaziarEstrelas('banca2')" onclick="selecionarPontuacao('banca2', 1)">&#9734;</span>
+                <span class="estrela" onmouseover="preencherEstrelas('banca2', 2)"
+                    onmouseout="esvaziarEstrelas('banca2')" onclick="selecionarPontuacao('banca2', 2)">&#9734;</span>
+                <span class="estrela" onmouseover="preencherEstrelas('banca2', 3)"
+                    onmouseout="esvaziarEstrelas('banca2')" onclick="selecionarPontuacao('banca2', 3)">&#9734;</span>
+                <span class="estrela" onmouseover="preencherEstrelas('banca2', 4)"
+                    onmouseout="esvaziarEstrelas('banca2')" onclick="selecionarPontuacao('banca2', 4)">&#9734;</span>
+                <span class="estrela" onmouseover="preencherEstrelas('banca2', 5)"
+                    onmouseout="esvaziarEstrelas('banca2')" onclick="selecionarPontuacao('banca2', 5)">&#9734;</span>
+                <button onclick="enviarAvaliacao('banca2')">Enviar</button>
+                <button onclick="verAvaliacoes('banca2')">Avaliações</button>
+                <div class="botãoapagar">
+                    <button onclick="limparVotos('banca2')">Limpar Votos</button>
+                </div>
+                <div id="contagem-votos-banca2" class="contagem-votos"></div>
+            </div>
+
             <img src="imagens/feirante2.jpg" alt="">
             <h2>PRODUTOS</h2>
             <div class="image-container">
-                <div id="nome-maracuja1" class="nome-fruta">MARACUJÁ</div>
-                <img id="maracuja1" class="frutas" src="imagens/polpademaracuja.jpg" alt="Maracujá">
-                <div id="preco-maracuja1" class="preco">R$ 5,00</div>
+                <div id="nome-maracuja2" class="nome-fruta">MARACUJÁ</div>
+                <img id="maracuja2" class="frutas" src="imagens/polpademaracuja.jpg" alt="Maracujá">
+                <div id="preco-maracuja2" class="preco">R$ 5,00</div>
 
-                <div id="nome-cupuacu1" class="nome-fruta" style="display: none;">CUPUAÇU</div>
-                <img id="cupuacu1" class="frutas" src="imagens/polpacupuaçu.jpg" alt="Cupuaçu">
-                <div id="preco-cupuacu1" class="preco" style="display: none;">R$ 7,00</div>
+                <div id="nome-cupuacu2" class="nome-fruta" style="display: none;">CUPUAÇU</div>
+                <img id="cupuacu2" class="frutas" src="imagens/polpacupuaçu.jpg" alt="Cupuaçu">
+                <div id="preco-cupuacu2" class="preco" style="display: none;">R$ 7,00</div>
 
-                <div id="nome-acerola1" class="nome-fruta" style="display: none;">ACEROLA</div>
-                <img id="acerola1" class="frutas" src="imagens/acerola.jpg" alt="Acerola">
-                <div id="preco-acerola1" class="preco" style="display: none;">R$ 3,00</div>
+                <div id="nome-acerola2" class="nome-fruta" style="display: none;">ACEROLA</div>
+                <img id="acerola2" class="frutas" src="imagens/acerola.jpg" alt="Acerola">
+                <div id="preco-acerola2" class="preco" style="display: none;">R$ 3,00</div>
 
-                <div class="seta-esquerda" onclick="changeImage('banca1', -1)">&#10094;</div>
-                <div class="seta-direita" onclick="changeImage('banca1', 1)">&#10095;</div>
-            </div><br>
+                <div class="seta-esquerda" onclick="changeImage('banca2', -1)">&#10094;</div>
+                <div class="seta-direita" onclick="changeImage('banca2', 1)">&#10095;</div>
+            </div>
+            <div id="info-container-banca2" class="info-container"></div>
 
             <div class="contato">
-                <h3>Contato: (69) 9 9274-5806</h3><br>
+                <h3>Contato: (69) 9 9274-5806</h3>
                 <a href="https://wa.me/556992745806" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
                     WhatsApp
                 </a>
             </div>
-
         </div>
 
+        <div class="seta-esquerda-bancas" onclick="changeBanca(-1)">&#10094;</div>
+        <div class="seta-direita-bancas" onclick="changeBanca(1)">&#10095;</div>
+    </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bancas = document.querySelectorAll('.conteudo');
+            let currentBancaIndex = 0;
 
+            function updateBancaVisibility() {
+                bancas.forEach((banca, index) => {
+                    banca.style.display = index === currentBancaIndex ? 'block' : 'none';
+                });
+            }
 
+            function updateArrowVisibilityBancas() {
+                const setaEsquerdaBancas = document.querySelector('.seta-esquerda-bancas');
+                const setaDireitaBancas = document.querySelector('.seta-direita-bancas');
 
-        <script>
+                setaEsquerdaBancas.style.display = currentBancaIndex === 0 ? 'none' : 'block';
+                setaDireitaBancas.style.display = currentBancaIndex === bancas.length - 1 ? 'none' : 'block';
+            }
 
+            function changeBanca(step) {
+                currentBancaIndex += step;
+                if (currentBancaIndex < 0) currentBancaIndex = bancas.length - 1;
+                if (currentBancaIndex >= bancas.length) currentBancaIndex = 0;
 
-            document.addEventListener('DOMContentLoaded', () => {
-                function updateArrowVisibility(conteudo, currentIndex, imagens) {
-                    const setaEsquerda = conteudo.querySelector('.seta-esquerda');
-                    const setaDireita = conteudo.querySelector('.seta-direita');
+                updateBancaVisibility();
+                updateArrowVisibilityBancas();
+            }
 
-                    setaEsquerda.style.display = currentIndex === 0 ? 'none' : 'block';
-                    setaDireita.style.display = currentIndex === imagens.length - 1 ? 'none' : 'block';
-                }
+            updateBancaVisibility();
 
-                function updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos) {
-                    imagens.forEach((img, index) => {
-                        img.style.display = index === currentIndex ? 'block' : 'none';
-                        nomesFrutas[index].style.display = index === currentIndex ? 'block' : 'none';
-                        precos[index].style.display = index === currentIndex ? 'block' : 'none';
-                    });
-                    updateArrowVisibility(conteudo, currentIndex, imagens);
-                }
+            updateBancaVisibility();
 
-                function changeImage(bancaId, step) {
-                    const conteudo = document.getElementById(bancaId);
-                    const imagens = conteudo.querySelectorAll('.frutas');
-                    const nomesFrutas = conteudo.querySelectorAll('.nome-fruta');
-                    const precos = conteudo.querySelectorAll('.preco');
-                    let currentIndex = 0;
+            function updateArrowVisibility(conteudo, currentIndex, imagens) {
+                const setaEsquerda = conteudo.querySelector('.seta-esquerda');
+                const setaDireita = conteudo.querySelector('.seta-direita');
 
-                    imagens.forEach((img, index) => {
-                        if (img.style.display === 'block') {
-                            currentIndex = index + step;
-                            if (currentIndex < 0) currentIndex = 0;
-                            if (currentIndex >= imagens.length) currentIndex = imagens.length - 1;
-                        }
-                    });
+                setaEsquerda.style.display = currentIndex === 0 ? 'none' : 'block';
+                setaDireita.style.display = currentIndex === imagens.length - 1 ? 'none' : 'block';
+            }
 
-                    updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos);
-                }
+            function updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos) {
+                imagens.forEach((img, index) => {
+                    img.style.display = index === currentIndex ? 'block' : 'none';
+                    nomesFrutas[index].style.display = index === currentIndex ? 'block' : 'none';
+                    precos[index].style.display = index === currentIndex ? 'block' : 'none';
+                });
+                updateArrowVisibility(conteudo, currentIndex, imagens);
+            }
 
-                const bancas = document.querySelectorAll('.conteudo');
+            function changeImage(bancaId, step) {
+                const conteudo = document.getElementById(bancaId);
+                const imagens = conteudo.querySelectorAll('.frutas');
+                const nomesFrutas = conteudo.querySelectorAll('.nome-fruta');
+                const precos = conteudo.querySelectorAll('.preco');
+                let currentIndex = 0;
 
-                bancas.forEach(conteudo => {
-                    const imagens = conteudo.querySelectorAll('.frutas');
-                    const nomesFrutas = conteudo.querySelectorAll('.nome-fruta');
-                    const precos = conteudo.querySelectorAll('.preco');
-                    let currentIndex = 0;
+                imagens.forEach((img, index) => {
+                    if (img.style.display === 'block') {
+                        currentIndex = index + step;
+                        if (currentIndex < 0) currentIndex = imagens.length - 1;
+                        if (currentIndex >= imagens.length) currentIndex = 0;
+                    }
+                });
 
-                    imagens.forEach((img, index) => {
-                        img.style.display = index === currentIndex ? 'block' : 'none';
-                        precos[index].style.display = index === currentIndex ? 'block' : 'none';
-                    });
+                updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos);
+            }
 
-                    conteudo.querySelector('.seta-esquerda').addEventListener('click', () => {
-                        if (currentIndex > 0) {
-                            currentIndex--;
-                            updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos);
-                        }
-                    });
+            bancas.forEach(conteudo => {
+                const imagens = conteudo.querySelectorAll('.frutas');
+                const nomesFrutas = conteudo.querySelectorAll('.nome-fruta');
+                const precos = conteudo.querySelectorAll('.preco');
+                let currentIndex = 0;
 
-                    conteudo.querySelector('.seta-direita').addEventListener('click', () => {
-                        if (currentIndex < imagens.length - 1) {
-                            currentIndex++;
-                            updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos);
-                        }
-                    });
+                imagens.forEach((img, index) => {
+                    img.style.display = index === currentIndex ? 'block' : 'none';
+                    precos[index].style.display = index === currentIndex ? 'block' : 'none';
+                });
+
+                conteudo.querySelector('.seta-esquerda').addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos);
+                    }
+                });
+
+                conteudo.querySelector('.seta-direita').addEventListener('click', () => {
+                    if (currentIndex < imagens.length - 1) {
+                        currentIndex++;
+                        updateImageVisibility(conteudo, currentIndex, imagens, nomesFrutas, precos);
+                    }
                 });
             });
-        </script>
+
+            document.querySelector('.seta-esquerda-bancas').addEventListener('click', () => changeBanca(-1));
+            document.querySelector('.seta-direita-bancas').addEventListener('click', () => changeBanca(1));
+        });
+    </script>
+
+    <script>
+        let pontuacaoSelecionada = 0;
+
+        function preencherEstrelas(bancaId, pontuacao) {
+            const estrelas = document.getElementById(`avaliacao-${bancaId}`).getElementsByTagName('span');
+
+            for (let i = 0; i < estrelas.length; i++) {
+                if (i < pontuacao || i < pontuacaoSelecionada) {
+                    estrelas[i].innerHTML = '&#9733'; // Preenche as estrelas até a pontuação selecionada ou até a pontuação já clicada
+                } else {
+                    estrelas[i].innerHTML = '&#9734'; // Esvazia as estrelas restantes
+                }
+            }
+        }
+
+        function esvaziarEstrelas(bancaId) {
+            const estrelas = document.getElementById(`avaliacao-${bancaId}`).getElementsByTagName('span');
+
+            for (let i = 0; i < estrelas.length; i++) {
+                if (i >= pontuacaoSelecionada) {
+                    estrelas[i].innerHTML = '&#9734'; // Esvazia as estrelas que não foram clicadas
+                }
+            }
+        }
+
+        function selecionarPontuacao(bancaId, pontuacao) {
+            pontuacaoSelecionada = pontuacao;
+            preencherEstrelas(bancaId, pontuacao);
+        }
+
+        function enviarAvaliacao(bancaId) {
+            // Aqui você pode adicionar lógica para enviar a avaliação ao backend usando a variável pontuacaoSelecionada
+            alert(`Você avaliou ${bancaId} com ${pontuacaoSelecionada} estrelas!`);
+            // Além disso, você pode querer atualizar a exibição ou fazer outras ações relacionadas à avaliação.
+
+            // Reseta a pontuação selecionada após o envio
+            pontuacaoSelecionada = 0;
+            esvaziarEstrelas(bancaId);
+        }
+
+    </script>
+
+    <script>
+        // Função para obter votos do armazenamento local
+        function obterVotosArmazenados(bancaId) {
+            const votosArmazenados = localStorage.getItem(`votos-${bancaId}`);
+            return votosArmazenados ? JSON.parse(votosArmazenados) : [0, 0, 0, 0, 0];
+        }
+
+        // Adiciona um objeto para armazenar os votos de cada estrela
+        const votosPorEstrela = {
+            'banca1': obterVotosArmazenados('banca1'),
+            'banca2': obterVotosArmazenados('banca2'),
+
+
+
+            // Adicione mais bancas conforme necessário
+        };
+
+        function salvarVotos(bancaId) {
+            localStorage.setItem(`votos-${bancaId}`, JSON.stringify(votosPorEstrela[bancaId]));
+        }
+
+        function verAvaliacoes(bancaId) {
+            const contagemVotos = document.getElementById(`contagem-votos-${bancaId}`);
+
+            if (contagemVotos.style.display === 'block') {
+                contagemVotos.style.display = 'none';
+            } else {
+                contagemVotos.innerHTML = '';
+
+                // Exibe a contagem de votos para cada estrela
+                for (let i = 0; i < 5; i++) {
+                    const estrela = i + 1;
+                    const contagem = votosPorEstrela[bancaId][i];
+                    contagemVotos.innerHTML += `${estrela} estrela(s): ${contagem} voto(s)<br>`;
+                }
+
+                contagemVotos.style.display = 'block';
+            }
+
+            // Atualize a lógica conforme necessário para ocultar/mostrar outros elementos relacionados às avaliações
+        }
+        // Atualize a função enviarAvaliacao para salvar os votos após o envio
+        function enviarAvaliacao(bancaId) {
+            const pontuacao = pontuacaoSelecionada;
+            alert(`Você avaliou ${bancaId} com ${pontuacao} estrelas!`);
+
+            // Incrementa a contagem de votos para a estrela selecionada
+            votosPorEstrela[bancaId][pontuacao - 1]++;
+
+            // Salva os votos no armazenamento local
+            salvarVotos(bancaId);
+
+            // Além disso, você pode querer atualizar a exibição ou fazer outras ações relacionadas à avaliação.
+
+            // Reseta a pontuação selecionada após o envio
+            pontuacaoSelecionada = 0;
+            esvaziarEstrelas(bancaId);
+        }
+    </script>
+
+    <script>
+        // Função para limpar os votos armazenados para uma banca específica
+        function limparVotos(bancaId) {
+            // Define os votos para a banca como um array de zeros
+            votosPorEstrela[bancaId] = [0, 0, 0, 0, 0];
+
+            // Salva os votos zerados no armazenamento local
+            salvarVotos(bancaId);
+
+            // Exibe uma mensagem ou realiza outras ações relacionadas à limpeza dos votos
+            alert(`Os votos para ${bancaId} foram limpos.`);
+        }
+    </script>
+
 
 </body>
 
