@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário Emater</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(105, 255, 86);
+
+
+        }
+
+        * {
+            font-family: 'Nunito', sans-serif;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            transition: all .2s linear;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-weight: 750;
+        }
+
+        .navbar a {
+            display: block;
+            padding: 1rem;
+            text-align: center;
+            color: black;
+        }
+
+        .navbar a:hover {
+            color: #1eff00;
+        }
+
+        .logo img {
+            width: 100px;
+            background-color: white;
+        }
+
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 0.1rem;
+            height: 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            background-color: rgb(255, 255, 255);
+            font-weight: 750
+        }
+
+        .quarta-feira {
+            background-color: green;
+            color: white;
+        }
+
+        #calendario {
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 3%;
+            margin-top: -15vh;
+
+        }
+
+
+        #calendario table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #calendario th,
+        #calendario td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        #calendario th {
+            background-color: #f2f2f2;
+        }
+
+        #controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        #content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .frases-container {
+            text-align: relative;
+            padding: 20px;
+            /* Adicione espaçamento conforme necessário */
+        }
+
+        .texto {
+            font-weight: 700;
+            color: black;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body class="bg">
+    <header>
+        <div class="logo"><img src="imagens/logo.png" alt=""></div>
+        <nav class="navbar">
+            <a class="barra" href="emater.html">Início</a>
+            <a class="barra" href="#">Calendário Emater</a>
+            <a class="barra" href="#">Quem Somos</a>
+            <a class="barra" href="#">Localização e Contatos</a>
+        </nav>
+    </header>
+    <div id="content-container">
+        <div id="calendario"></div>
+
+        <div class="frases-container">
+            <p class="texto">Feira Emater - Todas as Quartas-Feiras às 16:00 até 20:00- Av. dos Imigrantes, 1313 - São
+                Sebastiao II, Porto Velho - RO, 78903-100</p>
+            
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const today = new Date();
+            let currentYear = today.getFullYear();
+            let currentMonth = today.getMonth();
+
+            const calendar = document.getElementById('calendario');
+
+            renderCalendar(currentYear, currentMonth);
+
+            document.getElementById('calendario').addEventListener('click', function (event) {
+                if (event.target.id === 'prevMonth') {
+                    currentMonth = (currentMonth - 1 + 12) % 12;
+                    renderCalendar(currentYear, currentMonth);
+                } else if (event.target.id === 'nextMonth') {
+                    currentMonth = (currentMonth + 1) % 12;
+                    renderCalendar(currentYear, currentMonth);
+                }
+            });
+        });
+
+        function renderCalendar(year, month) {
+            const firstDay = new Date(year, month, 1).getDay();
+            const lastDay = new Date(year, month + 1, 0).getDate();
+
+            const calendar = document.getElementById('calendario');
+            const monthYearHeader = `<div id="controls">
+                              <button id="prevMonth">&lt;</button>
+                              <div>${getMonthName(month)} ${year}</div>
+                              <button id="nextMonth">&gt;</button>
+                            </div>`;
+
+            let html = `${monthYearHeader}
+                <table>
+                  <tr>
+                    <th>Domingo</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                    <th>Quarta</th>
+                    <th>Quinta</th>
+                    <th>Sexta</th>
+                    <th>Sábado</th>
+                  </tr>
+                  <tr>`;
+
+            let dayCount = 1;
+
+            // Preenche os dias vazios no início do mês
+            for (let i = 0; i < firstDay; i++) {
+                html += '<td></td>';
+            }
+
+            // Preenche os dias do mês
+            for (let i = 1; i <= lastDay; i++) {
+                let cellClass = '';
+
+                // Adiciona a classe 'quarta-feira' para as células correspondentes às quartas-feiras
+                if (new Date(year, month, i).getDay() === 3) {
+                    cellClass = 'quarta-feira';
+                }
+
+                html += `<td class="${cellClass}">${i}</td>`;
+
+                if ((i + firstDay) % 7 === 0) {
+                    html += '</tr><tr>';
+                }
+                dayCount++;
+            }
+
+            // Preenche os dias vazios no final do mês
+            for (let i = dayCount; i <= 7; i++) {
+                html += '<td></td>';
+            }
+
+            html += `</tr></table>`;
+
+            calendar.innerHTML = html;
+        }
+
+        function getMonthName(month) {
+            const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+            return monthNames[month];
+        }
+
+    </script>
+
+
+</body>
+
+</html>
