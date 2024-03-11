@@ -13,7 +13,7 @@
         }
 
         .bg {
-            background-color: rgb(105, 255, 86);
+            background-color: rgb(39, 138, 26);
             background-position: center;
             background-size: 100% 100%;
             background-repeat: no-repeat;
@@ -138,7 +138,7 @@
 
         .seta-direita-bancas,
         .seta-esquerda-bancas {
-            color: black;
+            color: rgb(255, 255, 255);
             font-size: 100px;
         }
 
@@ -197,11 +197,90 @@
             display: none;
         }
 
-        .seta-direita, 
+        .seta-direita,
         .seta-esquerda {
             font-size: 50px;
         }
-        
+
+        @media only screen and (max-width: 768px) {
+            body {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            header {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .navbar {
+                flex-direction: row;
+                text-align: center;
+            }
+
+            .logo img {
+                width: 50px;
+                /* Ajuste o tamanho da imagem conforme necessário */
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .nome {
+                width: 90%;
+            }
+
+            .conteudo {
+                width: 90%;
+            }
+
+            .conteudo img {
+                width: 100%;
+                /* Garante que a imagem se ajuste à largura do contêiner */
+                max-width: none;
+                /* Remove a largura máxima da imagem */
+            }
+
+            .image-container {
+                flex-direction: column;
+                /* Empilha as imagens verticalmente */
+            }
+
+            .image-container img {
+                width: 80%;
+                /* Ajusta a largura da imagem dentro do contêiner */
+                max-width: none;
+                /* Remove a largura máxima da imagem */
+            }
+
+            .seta-esquerda,
+            .seta-direita,
+            .seta-esquerda-bancas,
+            .seta-direita-bancas {
+                font-size: 30px;
+                /* Tamanho menor para as setas em telas menores */
+                color: white;
+            }
+
+
+            .seta-esquerda {
+                left: 0;
+            }
+
+            .seta-direita {
+                right: 0;
+            }
+
+            .conteudo h1,
+            .conteudo h2 {
+                font-size: 16px;
+                /* Tamanho menor para os títulos em telas menores */
+            }
+
+            .contato h3 {
+                font-size: 16px;
+                /* Tamanho menor para o título de contato em telas menores */
+            }
+        }
     </style>
 </head>
 
