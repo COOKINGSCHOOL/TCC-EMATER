@@ -11,14 +11,6 @@ if (isset($_POST['submit']) && !empty($_POST['cpf']) && !empty($_POST['senha']))
     $cpf = $_POST['cpf'];
     $senha = $_POST['senha'];
 
-    // Verifique se é o CPF e senha do administrador
-    if ($cpf === '99825325291' && $senha === '123456') {
-        // É o administrador, redirecione para a área administrativa
-        $_SESSION['user_id'] = 'admin'; // Defina um identificador especial para o administrador
-        header('Location: emater.html');
-        exit();
-    }
-
     // Construa a consulta SQL para autenticação do usuário normal
     $sql = "SELECT * FROM usuarios WHERE cpf = '$cpf' AND senha = '$senha'";
 
@@ -49,4 +41,4 @@ if (isset($_POST['submit']) && !empty($_POST['cpf']) && !empty($_POST['senha']))
     header('Location: login.php');
     exit();
 }
-?>
+
