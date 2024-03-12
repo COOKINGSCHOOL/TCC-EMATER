@@ -63,7 +63,7 @@
 
 
     <body>
-        <a href="home.php">Voltar</a>
+        <a href="home.html">Voltar</a>
         <div>    
             <h1>Login</h1>
             <form action="testLogin.php" method="POST">
